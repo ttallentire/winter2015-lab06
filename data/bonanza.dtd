@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Order Placement for lab
+-->
+
+<!-- TODO define your own vocabulary/syntax. Example follows:  -->
+<!-- An order specifies a customer, order_type, burgers, and anything special -->
+<!ELEMENT order (customer, delivery?, burger+, special?)>
+
+<!-- A customer is identified by their name -->
+<!ELEMENT customer (#PCDATA)>
+
+<!ATTLIST order
+    type    (eatin|takeout|delivery) #REQUIRED
+>
+
+<!ELEMENT delivery (#PCDATA)>
+
+<!ELEMENT special (#PCDATA)>
+
+<!--
+ The burgers will be specified individually
+ 1 of 5 patty types
+ up to 2 cheeses
+ any number of toppings
+ any number of sau5es
+ special instructions
+ an optional name
+-->
+<!ELEMENT burger (patty, cheeses?, topping*, sauce*, instructions?, name?)>
+
+<!ELEMENT patty (#PCDATA)>
+
+<!ATTLIST patty
+    type    (beef|pork|turkey|bison|vege) "beef"
+>
+
+<!ELEMENT cheeses EMPTY>
+
+<!ATTLIST cheeses 
+    top (american|swiss|jack|blue|gruyere|gouda|aged|goat|brie) #IMPLIED
+    bottom  (american|swiss|jack|blue|gruyere|gouda|aged|goat|brie) #IMPLIED
+>
+
+<!ELEMENT topping (#PCDATA)>
+
+<!ATTLIST topping
+    type    (lettuce|tomato|raw|dill|roasted|shrooms|salsa|chilies|fkchili|avacado|egg|porkbelly) #REQUIRED
+>
+
+<!ELEMENT sauce EMPTY>
+
+<!ATTLIST sauce
+    type    (ketchup|mustard|mayo|fksauce) #REQUIRED
+>
+
+<!ELEMENT instructions (#PCDATA)>
+
+<!ELEMENT name (#PCDATA)>
